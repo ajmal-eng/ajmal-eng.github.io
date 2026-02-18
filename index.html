@@ -2,15 +2,18 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Animated Gradient Food Web</title>
+<title>Food Booking</title>
 <style>
     body {
         margin: 0;
-        overflow: hidden;
         font-family: Arial, sans-serif;
-        background: linear-gradient(-45deg, #ff6b6b, #feca57, #48dbfb, #1dd1a1);
+        background: linear-gradient(-45deg, #ff6b6b, #ff9f43, #48dbfb, #1dd1a1);
         background-size: 400% 400%;
-        animation: gradientBG 12s ease infinite;
+        animation: gradientBG 10s ease infinite;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        color: white;
     }
 
     @keyframes gradientBG {
@@ -19,20 +22,34 @@
         100% { background-position: 0% 50%; }
     }
 
-    svg {
-        width: 100vw;
-        height: 100vh;
+    h1 {
+        margin-top: 40px;
+        font-size: 3rem;
+        text-shadow: 0 0 10px rgba(0,0,0,0.3);
     }
 
-    .node {
-        fill: url(#nodeGradient);
-        stroke: white;
-        stroke-width: 2;
-        animation: float 4s ease-in-out infinite;
+    .container {
+        display: flex;
+        gap: 30px;
+        flex-wrap: wrap;
+        justify-content: center;
+        margin: 40px;
     }
 
-    .node:nth-child(even) {
-        animation-duration: 6s;
+    .card {
+        background: rgba(255, 255, 255, 0.15);
+        backdrop-filter: blur(10px);
+        border-radius: 20px;
+        padding: 20px;
+        width: 220px;
+        text-align: center;
+        transition: transform 0.4s ease, box-shadow 0.4s ease;
+        animation: float 5s ease-in-out infinite;
+    }
+
+    .card:hover {
+        transform: translateY(-15px) scale(1.05);
+        box-shadow: 0 20px 40px rgba(0,0,0,0.3);
     }
 
     @keyframes float {
@@ -41,73 +58,61 @@
         100% { transform: translateY(0px); }
     }
 
-    .label {
-        fill: white;
-        font-size: 14px;
-        text-anchor: middle;
-        pointer-events: none;
+    .price {
+        font-size: 1.2rem;
+        margin: 10px 0;
     }
 
-    .link {
-        stroke: url(#lineGradient);
-        stroke-width: 3;
-        fill: none;
-        stroke-dasharray: 8;
-        animation: dash 3s linear infinite;
+    button {
+        background: linear-gradient(45deg, #ff6b6b, #feca57);
+        border: none;
+        padding: 10px 20px;
+        border-radius: 25px;
+        color: white;
+        font-weight: bold;
+        cursor: pointer;
+        transition: 0.3s;
     }
 
-    @keyframes dash {
-        to { stroke-dashoffset: -16; }
+    button:hover {
+        transform: scale(1.1);
+        box-shadow: 0 0 15px #fff;
     }
 </style>
 </head>
 <body>
 
-<svg viewBox="0 0 800 600">
+<h1>🍽️ Book Your Favorite Food</h1>
 
-    <defs>
-        <linearGradient id="nodeGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stop-color="#ffffff"/>
-            <stop offset="100%" stop-color="#ff9ff3"/>
-        </linearGradient>
+<div class="container">
+    <div class="card">
+        <h2>🍕 Pizza</h2>
+        <p>Delicious cheesy pizza</p>
+        <div class="price">$12</div>
+        <button onclick="alert('Pizza Booked!')">Book Now</button>
+    </div>
 
-        <linearGradient id="lineGradient" x1="0%" y1="0%" x2="100%" y2="0%">
-            <stop offset="0%" stop-color="#feca57"/>
-            <stop offset="100%" stop-color="#48dbfb"/>
-        </linearGradient>
-    </defs>
+    <div class="card">
+        <h2>🍔 Burger</h2>
+        <p>Juicy grilled burger</p>
+        <div class="price">$8</div>
+        <button onclick="alert('Burger Booked!')">Book Now</button>
+    </div>
 
-    <!-- Links -->
-    <line class="link" x1="400" y1="100" x2="200" y2="250"/>
-    <line class="link" x1="400" y1="100" x2="600" y2="250"/>
-    <line class="link" x1="200" y1="250" x2="100" y2="400"/>
-    <line class="link" x1="200" y1="250" x2="300" y2="400"/>
-    <line class="link" x1="600" y1="250" x2="500" y2="400"/>
-    <line class="link" x1="600" y1="250" x2="700" y2="400"/>
+    <div class="card">
+        <h2>🍣 Sushi</h2>
+        <p>Fresh sushi platter</p>
+        <div class="price">$15</div>
+        <button onclick="alert('Sushi Booked!')">Book Now</button>
+    </div>
 
-    <!-- Nodes -->
-    <circle class="node" cx="400" cy="100" r="40"/>
-    <text class="label" x="400" y="105">Sun</text>
-
-    <circle class="node" cx="200" cy="250" r="35"/>
-    <text class="label" x="200" y="255">Plants</text>
-
-    <circle class="node" cx="600" cy="250" r="35"/>
-    <text class="label" x="600" y="255">Algae</text>
-
-    <circle class="node" cx="100" cy="400" r="30"/>
-    <text class="label" x="100" y="405">Rabbit</text>
-
-    <circle class="node" cx="300" cy="400" r="30"/>
-    <text class="label" x="300" y="405">Deer</text>
-
-    <circle class="node" cx="500" cy="400" r="30"/>
-    <text class="label" x="500" y="405">Fish</text>
-
-    <circle class="node" cx="700" cy="400" r="30"/>
-    <text class="label" x="700" y="405">Bird</text>
-
-</svg>
+    <div class="card">
+        <h2>🍰 Cake</h2>
+        <p>Sweet chocolate cake</p>
+        <div class="price">$6</div>
+        <button onclick="alert('Cake Booked!')">Book Now</button>
+    </div>
+</div>
 
 </body>
 </html>
