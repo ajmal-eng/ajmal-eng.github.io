@@ -207,6 +207,7 @@ function signup(){
 
 function login(){
     let user=document.getElementById("username").value;
+    
     let pass=document.getElementById("password").value;
     let saved=JSON.parse(localStorage.getItem("user"));
     if(saved && saved.user===user && saved.pass===pass){
