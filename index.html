@@ -1,12 +1,113 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>My Website</title>
+<meta charset="UTF-8">
+<title>Animated Gradient Food Web</title>
+<style>
+    body {
+        margin: 0;
+        overflow: hidden;
+        font-family: Arial, sans-serif;
+        background: linear-gradient(-45deg, #ff6b6b, #feca57, #48dbfb, #1dd1a1);
+        background-size: 400% 400%;
+        animation: gradientBG 12s ease infinite;
+    }
+
+    @keyframes gradientBG {
+        0% { background-position: 0% 50%; }
+        50% { background-position: 100% 50%; }
+        100% { background-position: 0% 50%; }
+    }
+
+    svg {
+        width: 100vw;
+        height: 100vh;
+    }
+
+    .node {
+        fill: url(#nodeGradient);
+        stroke: white;
+        stroke-width: 2;
+        animation: float 4s ease-in-out infinite;
+    }
+
+    .node:nth-child(even) {
+        animation-duration: 6s;
+    }
+
+    @keyframes float {
+        0% { transform: translateY(0px); }
+        50% { transform: translateY(-10px); }
+        100% { transform: translateY(0px); }
+    }
+
+    .label {
+        fill: white;
+        font-size: 14px;
+        text-anchor: middle;
+        pointer-events: none;
+    }
+
+    .link {
+        stroke: url(#lineGradient);
+        stroke-width: 3;
+        fill: none;
+        stroke-dasharray: 8;
+        animation: dash 3s linear infinite;
+    }
+
+    @keyframes dash {
+        to { stroke-dashoffset: -16; }
+    }
+</style>
 </head>
 <body>
-    <h1 style="color:green;">Welcome to My Website 🚀</h1>
-    <p>This site is published using GitHub Pages.</p>
-    <p>dgiudgdgudiguidgidgdgdgdgiudgd</p>
-    <img src="https://yt3.googleusercontent.com/i1dmHejB6pZ4Fq5C-A0pOs5vGHqPsIuLFN1Xnc_9CHm56-bl58Z6a57AudhRmrUusLRmMhNLCFo=s160-c-k-c0x00ffffff-no-rj">
+
+<svg viewBox="0 0 800 600">
+
+    <defs>
+        <linearGradient id="nodeGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#ffffff"/>
+            <stop offset="100%" stop-color="#ff9ff3"/>
+        </linearGradient>
+
+        <linearGradient id="lineGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" stop-color="#feca57"/>
+            <stop offset="100%" stop-color="#48dbfb"/>
+        </linearGradient>
+    </defs>
+
+    <!-- Links -->
+    <line class="link" x1="400" y1="100" x2="200" y2="250"/>
+    <line class="link" x1="400" y1="100" x2="600" y2="250"/>
+    <line class="link" x1="200" y1="250" x2="100" y2="400"/>
+    <line class="link" x1="200" y1="250" x2="300" y2="400"/>
+    <line class="link" x1="600" y1="250" x2="500" y2="400"/>
+    <line class="link" x1="600" y1="250" x2="700" y2="400"/>
+
+    <!-- Nodes -->
+    <circle class="node" cx="400" cy="100" r="40"/>
+    <text class="label" x="400" y="105">Sun</text>
+
+    <circle class="node" cx="200" cy="250" r="35"/>
+    <text class="label" x="200" y="255">Plants</text>
+
+    <circle class="node" cx="600" cy="250" r="35"/>
+    <text class="label" x="600" y="255">Algae</text>
+
+    <circle class="node" cx="100" cy="400" r="30"/>
+    <text class="label" x="100" y="405">Rabbit</text>
+
+    <circle class="node" cx="300" cy="400" r="30"/>
+    <text class="label" x="300" y="405">Deer</text>
+
+    <circle class="node" cx="500" cy="400" r="30"/>
+    <text class="label" x="500" y="405">Fish</text>
+
+    <circle class="node" cx="700" cy="400" r="30"/>
+    <text class="label" x="700" y="405">Bird</text>
+
+</svg>
+
 </body>
 </html>
