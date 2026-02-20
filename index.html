@@ -2,227 +2,146 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
+<title>Food Web</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Food Ordering System</title>
 
 <style>
+/* ===== RESET ===== */
 *{
     margin:0;
     padding:0;
     box-sizing:border-box;
-    font-family:Arial, sans-serif;
+    font-family: "Segoe UI", sans-serif;
 }
 
+/* ===== ANIMATED GRADIENT BACKGROUND ===== */
 body{
     min-height:100vh;
-    background:linear-gradient(-45deg,#ff6b6b,#ff9f43,#48dbfb,#1dd1a1);
-    background-size:400% 400%;
-    animation:gradient 12s ease infinite;
+    background: linear-gradient(270deg,#00c6ff,#0072ff,#00ff99);
+    background-size:600% 600%;
+    animation: gradientBG 12s ease infinite;
     display:flex;
-    flex-direction:column;
+    justify-content:center;
     align-items:center;
-    color:white;
 }
 
-@keyframes gradient{
-    0%{background-position:0% 50%;}
-    50%{background-position:100% 50%;}
-    100%{background-position:0% 50%;}
+@keyframes gradientBG{
+    0%{background-position:0% 50%}
+    50%{background-position:100% 50%}
+    100%{background-position:0% 50%}
 }
 
-h1{
-    margin:20px;
-}
-
+/* ===== MAIN CARD ===== */
 .container{
-    width:95%;
-    max-width:1200px;
-}
-
-/* Auth */
-.auth-box{
-    background:rgba(255,255,255,0.15);
-    padding:20px;
-    border-radius:15px;
-    backdrop-filter:blur(10px);
-    margin-bottom:20px;
-}
-
-input{
-    width:100%;
-    padding:10px;
-    margin:8px 0;
-    border:none;
-    border-radius:8px;
-}
-
-button{
-    padding:10px 15px;
-    border:none;
+    width:90%;
+    max-width:900px;
+    background: rgba(255,255,255,0.15);
+    backdrop-filter: blur(12px);
     border-radius:20px;
-    cursor:pointer;
-    background:linear-gradient(45deg,#ff6b6b,#feca57);
-    color:white;
-    font-weight:bold;
-    margin-top:10px;
+    padding:30px;
+    box-shadow:0 20px 40px rgba(0,0,0,0.3);
+    animation: fadeIn 1.2s ease;
 }
 
-button:hover{
-    transform:scale(1.05);
+@keyframes fadeIn{
+    from{opacity:0; transform:translateY(30px);}
+    to{opacity:1; transform:translateY(0);}
 }
 
-/* Food grid */
-.food-grid{
+/* ===== TITLE ===== */
+h1{
+    text-align:center;
+    color:#fff;
+    font-size:2.5rem;
+    margin-bottom:10px;
+}
+
+p{
+    text-align:center;
+    color:#eafaff;
+    margin-bottom:30px;
+}
+
+/* ===== FOOD WEB BOXES ===== */
+.grid{
     display:grid;
     grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
     gap:20px;
-    margin-top:20px;
 }
 
 .card{
-    background:rgba(255,255,255,0.15);
-    padding:15px;
-    border-radius:15px;
+    background: rgba(255,255,255,0.25);
+    border-radius:16px;
+    padding:20px;
     text-align:center;
-    backdrop-filter:blur(8px);
-    transition:0.3s;
+    color:#003;
+    transition:0.4s;
+    cursor:pointer;
 }
 
 .card:hover{
-    transform:translateY(-8px);
+    transform:translateY(-10px) scale(1.05);
+    background: rgba(255,255,255,0.45);
 }
 
-.cart{
-    margin-top:30px;
-    background:rgba(0,0,0,0.3);
-    padding:15px;
-    border-radius:15px;
+/* ===== ICON ===== */
+.icon{
+    font-size:45px;
+    margin-bottom:10px;
 }
 
-.cart-item{
-    display:flex;
-    justify-content:space-between;
-    margin:8px 0;
-}
-
-.hidden{
-    display:none;
-}
-
-@media(max-width:600px){
-    h1{
-        font-size:1.5rem;
-    }
+/* ===== FOOTER ===== */
+footer{
+    text-align:center;
+    margin-top:25px;
+    color:#eafaff;
+    font-size:14px;
 }
 </style>
 </head>
 
 <body>
 
-<h1>🍽️ Food Ordering System</h1>
-
 <div class="container">
+    <h1>🌿 Food Web</h1>
+    <p>Energy flow between organisms in an ecosystem</p>
 
-<!-- Login & Signup -->
-<div class="auth-box" id="authBox">
-    <h2>Login</h2>
-    <input type="text" id="username" placeholder="Username">
-    <input type="password" id="password" placeholder="Password">
-    <button onclick="login()">Login</button>
-    <button onclick="signup()">Signup</button>
-</div>
-
-<!-- Main App -->
-<div id="app" class="hidden">
-
-<h2>Menu</h2>
-
-<div class="food-grid" id="foodGrid"></div>
-
-<div class="cart">
-    <h3>🛒 Cart</h3>
-    <div id="cartItems"></div>
-    <h3>Total: $<span id="total">0</span></h3>
-</div>
-
-<button onclick="logout()">Logout</button>
-
-</div>
-
-</div>
-
-<script>
-let cart=[];
-let foods=[
-    {name:"Pizza",price:12},
-    {name:"Burger",price:8},
-    {name:"Sushi",price:15},
-    {name:"Pasta",price:10},
-    {name:"Cake",price:6},
-];
-
-function renderFoods(){
-    let grid=document.getElementById("foodGrid");
-    grid.innerHTML="";
-    foods.forEach((food,index)=>{
-        grid.innerHTML+=`
+    <div class="grid">
         <div class="card">
-            <h3>${food.name}</h3>
-            <p>$${food.price}</p>
-            <button onclick="addToCart(${index})">Add to Cart</button>
+            <div class="icon">🌞</div>
+            <h3>Sun</h3>
+            <p>Main source of energy</p>
         </div>
-        `;
-    });
-}
 
-function addToCart(index){
-    cart.push(foods[index]);
-    renderCart();
-}
-
-function renderCart(){
-    let cartBox=document.getElementById("cartItems");
-    let total=0;
-    cartBox.innerHTML="";
-    cart.forEach((item,i)=>{
-        total+=item.price;
-        cartBox.innerHTML+=`
-        <div class="cart-item">
-            <span>${item.name}</span>
-            <span>$${item.price}</span>
+        <div class="card">
+            <div class="icon">🌱</div>
+            <h3>Producers</h3>
+            <p>Plants make food</p>
         </div>
-        `;
-    });
-    document.getElementById("total").innerText=total;
-}
 
-function signup(){
-    let user=document.getElementById("username").value;
-    let pass=document.getElementById("password").value;
-    if(user && pass){
-        localStorage.setItem("user",JSON.stringify({user,pass}));
-        alert("Signup successful!");
-    }
-}
+        <div class="card">
+            <div class="icon">🐐</div>
+            <h3>Herbivores</h3>
+            <p>Eat plants</p>
+        </div>
 
-function login(){
-    let user=document.getElementById("username").value;
-    
-    let pass=document.getElementById("password").value;
-    let saved=JSON.parse(localStorage.getItem("user"));
-    if(saved && saved.user===user && saved.pass===pass){
-        document.getElementById("authBox").classList.add("hidden");
-        document.getElementById("app").classList.remove("hidden");
-        renderFoods();
-    }else{
-        alert("Invalid credentials");
-    }
-}
+        <div class="card">
+            <div class="icon">🦊</div>
+            <h3>Carnivores</h3>
+            <p>Eat animals</p>
+        </div>
 
-function logout(){
-    location.reload();
-}
-</script>
+        <div class="card">
+            <div class="icon">🍄</div>
+            <h3>Decomposers</h3>
+            <p>Recycle nutrients</p>
+        </div>
+    </div>
+
+    <footer>
+        Animated Gradient Food Web • Learning Science 💡
+    </footer>
+</div>
 
 </body>
 </html>
