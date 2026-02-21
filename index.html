@@ -2,100 +2,75 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Food Web</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gradient UI Website</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
 
 <style>
-/* ===== RESET ===== */
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-    font-family: "Segoe UI", sans-serif;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
 }
 
-/* ===== ANIMATED GRADIENT BACKGROUND ===== */
-body{
-    min-height:100vh;
-    background: linear-gradient(270deg,#00c6ff,#0072ff,#00ff99);
-    background-size:600% 600%;
-    animation: gradientBG 12s ease infinite;
-    display:flex;
-    justify-content:center;
-    align-items:center;
+body {
+  height: 100vh;
+  background: linear-gradient(-45deg, #ff6a88, #8a2be2, #00f5a0, #00d9f5);
+  background-size: 400% 400%;
+  animation: gradientMove 12s ease infinite;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-@keyframes gradientBG{
-    0%{background-position:0% 50%}
-    50%{background-position:100% 50%}
-    100%{background-position:0% 50%}
+@keyframes gradientMove {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
 }
 
-/* ===== MAIN CARD ===== */
-.container{
-    width:90%;
-    max-width:900px;
-    background: rgba(255,255,255,0.15);
-    backdrop-filter: blur(12px);
-    border-radius:20px;
-    padding:30px;
-    box-shadow:0 20px 40px rgba(0,0,0,0.3);
-    animation: fadeIn 1.2s ease;
+.container {
+  text-align: center;
+  color: white;
 }
 
-@keyframes fadeIn{
-    from{opacity:0; transform:translateY(30px);}
-    to{opacity:1; transform:translateY(0);}
+.glass-card {
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255,255,255,0.2);
+  padding: 50px;
+  border-radius: 25px;
+  box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+  max-width: 500px;
 }
 
-/* ===== TITLE ===== */
-h1{
-    text-align:center;
-    color:#fff;
-    font-size:2.5rem;
-    margin-bottom:10px;
+h1 {
+  font-size: 40px;
+  margin-bottom: 15px;
 }
 
-p{
-    text-align:center;
-    color:#eafaff;
-    margin-bottom:30px;
+p {
+  font-size: 16px;
+  margin-bottom: 30px;
+  opacity: 0.9;
 }
 
-/* ===== FOOD WEB BOXES ===== */
-.grid{
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
-    gap:20px;
+button {
+  padding: 12px 30px;
+  border: none;
+  border-radius: 30px;
+  background: linear-gradient(90deg, #ffffff, #f0f0f0);
+  color: #333;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.3s ease;
 }
 
-.card{
-    background: rgba(255,255,255,0.25);
-    border-radius:16px;
-    padding:20px;
-    text-align:center;
-    color:#003;
-    transition:0.4s;
-    cursor:pointer;
-}
-
-.card:hover{
-    transform:translateY(-10px) scale(1.05);
-    background: rgba(255,255,255,0.45);
-}
-
-/* ===== ICON ===== */
-.icon{
-    font-size:45px;
-    margin-bottom:10px;
-}
-
-/* ===== FOOTER ===== */
-footer{
-    text-align:center;
-    margin-top:25px;
-    color:#eafaff;
-    font-size:14px;
+button:hover {
+  transform: scale(1.1);
+  box-shadow: 0 10px 20px rgba(0,0,0,0.3);
 }
 </style>
 </head>
@@ -103,44 +78,11 @@ footer{
 <body>
 
 <div class="container">
-    <h1>🌿 Food Web</h1>
-    <p>Energy flow between organisms in an ecosystem</p>
-
-    <div class="grid">
-        <div class="card">
-            <div class="icon">🌞</div>
-            <h3>Sun</h3>
-            <p>Main source of energy</p>
-        </div>
-
-        <div class="card">
-            <div class="icon">🌱</div>
-            <h3>Producers</h3>
-            <p>Plants make food</p>
-        </div>
-
-        <div class="card">
-            <div class="icon">🐐</div>
-            <h3>Herbivores</h3>
-            <p>Eat plants</p>
-        </div>
-
-        <div class="card">
-            <div class="icon">🦊</div>
-            <h3>Carnivores</h3>
-            <p>Eat animals</p>
-        </div>
-
-        <div class="card">
-            <div class="icon">🍄</div>
-            <h3>Decomposers</h3>
-            <p>Recycle nutrients</p>
-        </div>
-    </div>
-
-    <footer>
-        Animated Gradient Food Web • Learning Science 💡
-    </footer>
+  <div class="glass-card">
+    <h1>Welcome to Gradient UI</h1>
+    <p>Create beautiful modern websites with animated gradients and glassmorphism effects.</p>
+    <button>Get Started</button>
+  </div>
 </div>
 
 </body>
