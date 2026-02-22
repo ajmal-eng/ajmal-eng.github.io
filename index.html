@@ -84,6 +84,52 @@ button:hover {
     <button>Get Started</button>
   </div>
 </div>
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Triangle in Circle</title>
+</head>
+<body>
+<canvas id="myCanvas" width="500" height="500"></canvas>
 
+<script>
+let canvas = document.getElementById("myCanvas");
+let ctx = canvas.getContext("2d");
+
+let centerX = 250;
+let centerY = 250;
+let radius = 150;   // scaled up so you can see it clearly
+
+// Draw Circle
+ctx.beginPath();
+ctx.arc(centerX, centerY, radius, 0, 2 * Math.PI);
+ctx.stroke();
+
+// 60 degrees in radians
+let angle = 60 * Math.PI / 180;
+
+// First point on circle
+let x1 = centerX + radius;
+let y1 = centerY;
+
+// Second point (60 degrees)
+let x2 = centerX + radius * Math.cos(angle);
+let y2 = centerY - radius * Math.sin(angle);
+
+// Draw triangle
+ctx.beginPath();
+ctx.moveTo(centerX, centerY); // center
+ctx.lineTo(x1, y1);
+ctx.lineTo(x2, y2);
+ctx.closePath();
+ctx.stroke();
+
+// Label 60°
+ctx.font = "20px Arial";
+ctx.fillText("60°", centerX + 30, centerY - 20);
+
+</script>
+</body>
+</html>
 </body>
 </html>
